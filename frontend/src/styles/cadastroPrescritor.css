@@ -1,0 +1,86 @@
+.cadastro-container {
+    background-color: #017196;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    min-height: 100vh;
+  }
+  
+  .form-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2.5rem;
+    max-width: 750px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo-cadastro {
+    height: 100px;
+    display: block;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .form-box h2 {
+    text-align: center;
+    color: #00232e;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+  
+  form .linha {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input,
+  select {
+    padding: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #017196;
+    outline: none;
+  }
+  
+  input.erro,
+  select.erro {
+    border-color: red;
+  }
+  
+  .mensagem-erro {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  
+  .btn-submeter {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: #017196;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-submeter:hover {
+    background-color: #014c5e;
+  }
+  

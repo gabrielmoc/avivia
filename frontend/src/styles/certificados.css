@@ -1,0 +1,128 @@
+.pagina-certificados {
+  padding: 4rem 2rem;
+  background-color: #f9fbfb;
+  font-family: "Segoe UI", sans-serif;
+  color: #00232e;
+  text-align: center;
+}
+
+.cards-certificados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card-certificado {
+  background-color: #ecfdff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  width: 280px;
+  transition: transform 0.2s ease;
+}
+
+.card-certificado:hover {
+  transform: translateY(-5px);
+}
+
+.imagem-certificado {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.card-certificado h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.card-certificado p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.botao-certificado {
+  display: inline-block;
+  background-color: #017196;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.campo-busca {
+  padding: 0.8rem;
+  width: 300px;
+  max-width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 20px;
+}
+
+.lote {
+  font-size: 0.9rem;
+  color: #017196;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.card-certificado {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-certificado:link,
+.card-certificado:visited,
+.card-certificado:hover,
+.card-certificado:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.secao-intro-certificado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.intro-texto {
+  flex: 1;
+  min-width: 280px;
+  max-width: 600px;
+}
+
+.intro-texto p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #00232e;
+}
+
+.intro-imagem {
+  flex: 1;
+  text-align: center;
+  min-width: 240px;
+}
+
+.intro-imagem img {
+  max-width: 220px;
+  height: auto;
+}
+
+.legenda-imagem {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 0.5rem;
+}

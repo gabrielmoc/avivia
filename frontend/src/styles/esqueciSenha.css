@@ -1,0 +1,67 @@
+.esqueci-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #017196;
+    height: 100vh;
+    padding-top: 40px;
+  }
+  
+  .logo-login {
+    width: 130px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+  }
+  
+  .box-esqueci {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .box-esqueci h2 {
+    margin-bottom: 20px;
+    color: #00232e;
+  }
+  
+  .box-esqueci input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .box-esqueci button {
+    width: 100%;
+    padding: 12px;
+    background-color: #017196;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .box-esqueci button:hover {
+    background-color: #015a78;
+  }
+  
+  .mensagem-sucesso {
+    color: green;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .voltar-login {
+    display: block;
+    margin-top: 20px;
+    color: #00232e;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+  

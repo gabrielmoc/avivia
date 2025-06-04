@@ -1,0 +1,219 @@
+.area-prescritor-container {
+  font-family: "Segoe UI", sans-serif;
+  color: #00232e;
+  background-color: #f8f9fa;
+}
+
+.banner {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-conteudo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 4px #000;
+}
+
+.banner-conteudo h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-conteudo p {
+  font-size: 1.3rem;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 3rem 2rem;
+  background-color: #fff;
+}
+
+.card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-width: 280px;
+  width: 100%;
+  text-align: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: #00232e;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.area-prescritor-container {
+  background-color: #f9f9f9;
+  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+.cabecalho-painel {
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.cabecalho-painel h1 {
+  font-size: 2rem;
+  color: #00232e;
+}
+
+.icone-usuario {
+  font-size: 1.8rem;
+  color: #017196;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icone-usuario:hover {
+  transform: scale(1.1);
+}
+
+.btn-logout {
+  padding: 0.6rem 1.2rem;
+  background-color: #ff4d4d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #cc0000;
+}
+
+/**/
+
+.cabecalho-painel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  flex-wrap: wrap;
+}
+
+.cabecalho-painel h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00232e;
+}
+
+.botoes-usuario {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.icone-usuario {
+  font-size: 1.5rem;
+  color: #017196;
+  cursor: pointer;
+}
+
+.btn-logout {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-logout:hover {
+  background-color: #cc0000;
+}
+
+.cabecalho-painel {
+  padding: 2rem 2rem 1rem;
+}
+
+.cabecalho-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cabecalho-info h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00232e;
+  margin: 0;
+}
+
+.icone-usuario {
+  font-size: 1.5rem;
+  color: #017196;
+  cursor: pointer;
+}
+
+.btn-logout {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-logout:hover {
+  background-color: #cc0000;
+}

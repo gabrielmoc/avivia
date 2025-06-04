@@ -1,0 +1,43 @@
+.login-admin {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-admin h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #017196;
+}
+
+.login-admin form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-admin input {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.login-admin button {
+  padding: 0.8rem;
+  background-color: #017196;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-admin button:hover {
+  background-color: #014c5e;
+}

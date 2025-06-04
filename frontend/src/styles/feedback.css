@@ -1,0 +1,265 @@
+.secao-feedbacks {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.secao-feedbacks h2 {
+  font-size: 2rem;
+  color: #00232e;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.card-feedback {
+  background: #f4f9fb;
+  border-radius: 12px;
+  padding: 1.6rem 1.2rem;
+  margin: 0 12px;
+  min-height: 240px; /* altura mínima fixa para alinhamento */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card-feedback:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.estrelas svg {
+  transition: transform 0.2s ease;
+}
+
+.card-feedback:hover .estrelas svg {
+  transform: scale(1.1);
+}
+
+.cabecalho-feedback {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.cabecalho-feedback h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #00232e;
+}
+
+.estrelas {
+  display: flex;
+  gap: 0.1rem;
+}
+
+.texto-feedback {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.slider-feedbacks .slick-arrow::before {
+  color: #017196; /* seta na paleta do projeto */
+}
+
+.container-feedback-admin {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #00232e;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn-novo {
+  background: #017196;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: 500;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-feedbacks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-feedback-admin {
+  background: #f4f9fb;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.texto {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.nome {
+  font-weight: 600;
+  color: #00232e;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.acoes button {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.acoes button:first-child {
+  background: #017196;
+  color: #fff;
+}
+
+.acoes button:last-child {
+  background: #e55050;
+  color: #fff;
+}
+
+.slider-feedbacks .slick-slide {
+  padding: 0 12px;
+}
+
+.pagina-feedback {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.pagina-feedback h1 {
+  font-size: 2rem;
+  color: #00232e;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.barra-superior-feedback {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.botao-publicar {
+  background-color: #017196;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.botao-publicar:hover {
+  background-color: #015a79;
+}
+
+.cards-feedback {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+.card-feedback-admin {
+  background: #f4f9fb;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card-feedback-admin .texto {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+.card-feedback-admin .nome {
+  font-weight: 600;
+  color: #00232e;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.card-feedback-admin .acoes {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn-editar {
+  background: #017196;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.btn-excluir {
+  background: #e55050;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.mensagem-vazia {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}
+
+.barra-superior-feedback {
+  display: flex;
+  justify-content: center; /* ← centraliza horizontalmente */
+  margin-bottom: 1.5rem;
+}

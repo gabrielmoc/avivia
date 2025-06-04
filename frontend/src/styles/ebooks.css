@@ -1,0 +1,145 @@
+.pagina-ebooks {
+  padding: 4rem 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9f9f9;
+  color: #00232e;
+  text-align: center;
+}
+
+.pagina-ebooks h1 {
+  font-size: 2.4rem;
+  margin-bottom: 3rem;
+  font-weight: bold;
+}
+
+.cards-ebooks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card-ebook {
+  background-color: #eef9fd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 320px;
+  padding: 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza conteúdo horizontalmente */
+  text-align: center; /* centraliza textos */
+}
+
+.card-ebook:hover {
+  transform: translateY(-5px);
+}
+
+.imagem-capa-ebook {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card-ebook h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.card-ebook p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.botao-ebook {
+  padding: 0.6rem 1.2rem;
+  background-color: #017196;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+}
+
+.botao-ebook:hover {
+  background-color: #055d7a;
+}
+
+.campo-busca-ebook {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  width: 300px;
+  max-width: 400px;
+  margin: 1rem auto 2rem;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.mensagem-vazia {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.card-ebook {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-ebook:link,
+.card-ebook:visited,
+.card-ebook:hover,
+.card-ebook:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.botao-publicar {
+  background-color: #017196;
+  color: white;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.acoes-ebook {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-editar,
+.btn-excluir {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-editar {
+  background-color: #e7f3ff;
+  color: #004a77;
+}
+
+.btn-excluir {
+  background-color: #ffe7e7;
+  color: #a80000;
+}

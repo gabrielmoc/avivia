@@ -1,0 +1,92 @@
+.acesso-prescritor {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+
+.topo-logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-avivia {
+  height: 150px;
+}
+
+.conteudo-acesso {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.texto-acesso {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.texto-acesso h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00232e;
+}
+
+.texto-acesso p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.btn-primario,
+.btn-secundario {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-primario {
+  background-color: #014c5e;
+  color: #fff;
+  border: none;
+}
+
+.btn-primario:hover {
+  background-color: #017196;
+}
+
+.btn-secundario {
+  background-color: transparent;
+  border: 2px solid #014c5e;
+  color: #014c5e;
+}
+
+.btn-secundario:hover {
+  background-color: #e6f7fa;
+}
+
+.imagem-acesso {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.imagem-acesso img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

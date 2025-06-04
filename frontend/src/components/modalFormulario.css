@@ -1,0 +1,98 @@
+/* Fundo escuro atrás do modal */
+.overlay {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+/* Caixa branca centralizada do modal */
+.modal {
+  position: relative;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Título */
+.modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Estilo dos campos */
+.modal form div {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal label {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.modal input {
+  width: 100%; /* ➡️ Ocupa toda a largura do container */
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-sizing: border-box; /* Garante que padding não estoura o tamanho */
+}
+
+/* Estilo dos botões */
+.modal button {
+  padding: 0.6rem 1.2rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal button[type="submit"] {
+  background-color: #017196;
+  color: white;
+}
+
+.modal button[type="submit"]:hover {
+  background-color: #015f7b;
+}
+
+.modal button[type="button"] {
+  background-color: #e0e0e0;
+}
+
+.modal button[type="button"]:hover {
+  background-color: #cfcfcf;
+}
+
+.modal textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  height: 150px;
+  resize: vertical;
+  box-sizing: border-box;
+}

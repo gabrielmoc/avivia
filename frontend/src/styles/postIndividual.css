@@ -1,0 +1,29 @@
+.post-individual-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    font-family: "Segoe UI", sans-serif;
+    color: #00232e;
+    text-align: center; /* Centraliza tudo dentro do container */
+  }
+  
+  .post-individual-container h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .imagem-post {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    margin: 0 auto 2rem; /* Centraliza imagem e adiciona margem inferior */
+    display: block; /* Necessário para centralizar com margin auto */
+  }
+  
+  .conteudo-post {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    white-space: pre-line;
+    margin-top: 1rem;
+  }
+  

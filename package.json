@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "lucide-react": "^0.511.0",
+    "nodemailer": "^7.0.2",
+    "react-input-mask-next": "^3.0.0-alpha.12",
+    "react-modal": "^3.16.3",
+    "react-quill": "^2.0.0",
+    "react-slick": "^0.30.3",
+    "slick-carousel": "^1.8.1"
+  }
+}
