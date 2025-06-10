@@ -2,7 +2,11 @@ const pool = require("../db");
 
 // CADASTRAR EBOOK
 exports.cadastrarEbook = async (req, res) => {
-  const { titulo, descricao, link_pdf, data_publicacao, imagem_url } = req.body;
+  let { titulo, descricao, link_pdf, data_publicacao, imagem_url } = req.body;
+
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     await pool.query(
@@ -45,7 +49,11 @@ exports.deletarEbook = async (req, res) => {
 // ATUALIZAR EBOOK
 exports.atualizarEbook = async (req, res) => {
   const { id } = req.params;
-  const { titulo, descricao, link_pdf, data_publicacao, imagem_url } = req.body;
+  let { titulo, descricao, link_pdf, data_publicacao, imagem_url } = req.body;
+
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     const resultado = await pool.query(

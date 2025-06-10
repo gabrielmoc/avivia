@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaTrash, FaEdit, FaPlus } from "react-icons/fa";
-import "../styles/estudosCientificos.css"; // ✅ Mantido, conforme seu padrão
-import ModalFormulario from "../components/ModalFormulario"; // ✅ Modal genérico
+import "../styles/estudosCientificos.css";
+import ModalFormulario from "../components/ModalFormulario";
+
+const API_URL = process.env.REACT_APP_API_URL; // ✅ Adicionado
 
 const MeusPatologias = () => {
   const [patologias, setPatologias] = useState([]);
@@ -13,10 +15,10 @@ const MeusPatologias = () => {
     const token = localStorage.getItem("token_admin");
 
     axios
-      .get("http://localhost:5000/api/patologias", {
+      .get(`${API_URL}/api/patologias`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => setPatologias(res.data)) // ✅ Array direto
+      .then((res) => setPatologias(res.data))
       .catch((err) => console.error("Erro ao buscar patologias:", err));
   };
 
@@ -29,7 +31,7 @@ const MeusPatologias = () => {
 
     if (window.confirm("Tem certeza que deseja excluir esta patologia?")) {
       axios
-        .delete(`http://localhost:5000/api/patologias/${id}`, {
+        .delete(`${API_URL}/api/patologias/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => buscarPatologias())
@@ -54,47 +56,67 @@ const MeusPatologias = () => {
   const handleSalvar = (dados) => {
     const token = localStorage.getItem("token_admin");
 
-    if (dados.id) {
-      axios
-        .put(`http://localhost:5000/api/patologias/${dados.id}`, dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarPatologias();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao atualizar a patologia."));
-    } else {
-      axios
-        .post("http://localhost:5000/api/patologias", dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarPatologias();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao criar a patologia."));
+    if (dados.get) {
+      // ── Ler campos obrigatórios dentro do FormData ──
+      const nome = dados.get("nome");
+      const descricao = dados.get("descricao");
+
+      if (!nome || !descricao) {
+        alert("Por favor, preencha todos os campos obrigatórios!");
+        return;
+      }
+
+      // ── Verificar se existe id no FormData ──
+      if (!dados.get("id")) {
+        /* ----------  POST  ---------- */
+        axios
+          .post(`${API_URL}/api/patologias`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarPatologias();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao criar a patologia."));
+      } else {
+        /* ----------  PUT  ---------- */
+        axios
+          .put(`${API_URL}/api/patologias/${dados.get("id")}`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarPatologias();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao atualizar a patologia."));
+      }
     }
   };
 
   return (
     <div className="pagina-ebooks">
-      {" "}
-      {/* ✅ Mantido conforme seu padrão */}
       <h1>Patologias</h1>
       <button className="botao-publicar" onClick={handleNovo}>
         <FaPlus /> Publicar nova patologia
       </button>
       <div className="cards-ebooks">
-        {" "}
-        {/* ✅ Mantido conforme seu padrão */}
         {patologias.length === 0 ? (
           <p className="mensagem-vazia">Nenhuma patologia cadastrada.</p>
         ) : (
           patologias.map((patologia) => (
             <div className="card-ebook" key={patologia.id}>
               <img
-                src={patologia.imagem_url}
+                src={
+                  patologia.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${patologia.imagem_url}`
+                    : patologia.imagem_url
+                }
                 alt={patologia.nome}
                 className="imagem-capa-ebook"
                 onError={(e) => (e.target.style.display = "none")}

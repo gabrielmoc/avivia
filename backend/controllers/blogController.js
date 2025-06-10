@@ -2,7 +2,13 @@ const pool = require("../db");
 
 // Criar novo post (Admin)
 exports.criarPost = async (req, res) => {
-  const { titulo, conteudo, imagem_url } = req.body;
+  const { titulo, conteudo } = req.body;
+  let imagem_url = req.body.imagem_url; // mantém compatível com link manual
+
+  // Se foi feito upload, pega o caminho da imagem
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     const query = `
@@ -57,15 +63,21 @@ exports.verPost = async (req, res) => {
 // Editar post
 exports.editarPost = async (req, res) => {
   const { id } = req.params;
-  const { titulo, conteudo, imagem_url } = req.body;
+  let { titulo, conteudo, imagem_url } = req.body; // usar let pois imagem_url pode ser sobrescrita
+
+  // Se foi feito upload, sobrescreve o imagem_url
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     const post = await pool.query("SELECT * FROM posts_blog WHERE id = $1", [
       id,
     ]);
 
-    if (post.rows.length === 0)
+    if (post.rows.length === 0) {
       return res.status(404).json({ mensagem: "Post não encontrado." });
+    }
 
     const result = await pool.query(
       `UPDATE posts_blog

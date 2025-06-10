@@ -2,7 +2,12 @@ const pool = require("../db");
 
 // Cadastrar
 exports.criarEstudo = async (req, res) => {
-  const { titulo, link_estudo, patologia_id, descricao, imagem_url } = req.body;
+  let { titulo, link_estudo, patologia_id, descricao, imagem_url } = req.body;
+
+  // Se foi feito upload de imagem, substitui o imagem_url
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     await pool.query(
@@ -80,7 +85,12 @@ exports.deletarEstudo = async (req, res) => {
 // Atualizar estudo
 exports.atualizarEstudo = async (req, res) => {
   const { id } = req.params;
-  const { titulo, link_estudo, patologia_id, descricao, imagem_url } = req.body;
+  let { titulo, link_estudo, patologia_id, descricao, imagem_url } = req.body;
+
+  // Se foi feito upload de imagem, substitui o imagem_url
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     const resultado = await pool.query(

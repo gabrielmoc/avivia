@@ -15,9 +15,11 @@ const ModalFormulario = ({
   patologias = [],
 }) => {
   const [formData, setFormData] = useState(dadosIniciais);
+  const [imagemArquivo, setImagemArquivo] = useState(null); // novo state para upload
 
   useEffect(() => {
     setFormData(dadosIniciais);
+    setImagemArquivo(null); // reseta o arquivo ao abrir modal
   }, [dadosIniciais]);
 
   const handleChange = (e) => {
@@ -27,7 +29,23 @@ const ModalFormulario = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    // Cria FormData
+    const formDataToSend = new FormData();
+
+    // Adiciona todos os campos do formData
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
+
+    // Se tiver imagem em arquivo, adiciona no FormData com o campo "imagem"
+    if (imagemArquivo) {
+      formDataToSend.append("imagem", imagemArquivo);
+    }
+
+    // Chama o onSubmit passando o FormData completo
+    onSubmit(formDataToSend);
+
     onClose();
   };
 
@@ -90,7 +108,7 @@ const ModalFormulario = ({
                   }
                   disabled
                 />
-              ) : campo === "patologia_id" ? ( // ✅ SELECT para patologia_id
+              ) : campo === "patologia_id" ? (
                 <select
                   name={campo}
                   value={formData[campo] || ""}
@@ -103,6 +121,20 @@ const ModalFormulario = ({
                     </option>
                   ))}
                 </select>
+              ) : campo === "imagem_url" ? (
+                <>
+                  <input
+                    name={campo}
+                    value={formData[campo] || ""}
+                    onChange={handleChange}
+                    placeholder="URL da imagem (opcional)"
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImagemArquivo(e.target.files[0])}
+                  />
+                </>
               ) : (
                 <input
                   name={campo}

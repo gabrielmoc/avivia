@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/ebooks.css";
 
+const API_URL = process.env.REACT_APP_API_URL; // ✅ Adicionado
+
 const Ebooks = () => {
   const [ebooks, setEbooks] = useState([]);
   const [filtro, setFiltro] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/ebooks")
+      .get(`${API_URL}/api/ebooks`) // ✅ Corrigido
       .then((res) => setEbooks(res.data))
       .catch((err) => console.error("Erro ao buscar ebooks:", err));
   }, []);
@@ -40,7 +42,11 @@ const Ebooks = () => {
               rel="noopener noreferrer"
             >
               <img
-                src={ebook.imagem_url}
+                src={
+                  ebook.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${ebook.imagem_url}`
+                    : ebook.imagem_url
+                }
                 alt={ebook.titulo}
                 className="imagem-capa-ebook"
               />

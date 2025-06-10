@@ -9,6 +9,8 @@ import FeedbackCarousel from "../components/FeedbackCarousel";
 import "../styles/home.css";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
@@ -20,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/blog")
+      .get(`${API_URL}/api/blog`)
       .then((res) => {
         const ultimosTres = res.data.posts.slice(0, 3);
         setPosts(ultimosTres);
@@ -79,10 +81,15 @@ const Home = () => {
           {posts.map((post) => (
             <div className="card-blog" key={post.id}>
               <img
-                src={post.imagem_url}
+                src={
+                  post.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${post.imagem_url}`
+                    : post.imagem_url
+                }
                 alt={post.titulo}
                 className="imagem-capa-blog"
               />
+
               <h3>{post.titulo}</h3>
               <div
                 className="conteudo-post"

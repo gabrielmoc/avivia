@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/estudosPorPatologia.css";
 
+const API_URL = process.env.REACT_APP_API_URL; // ✅ Adicionado
+
 const EstudosPorPatologia = () => {
   const { id } = useParams();
   const [estudos, setEstudos] = useState([]);
@@ -12,13 +14,13 @@ const EstudosPorPatologia = () => {
   useEffect(() => {
     // Buscar dados da patologia
     axios
-      .get(`http://localhost:5000/api/patologias/${id}`)
+      .get(`${API_URL}/api/patologias/${id}`) // ✅ Corrigido
       .then((res) => setPatologia(res.data))
       .catch((err) => console.error("Erro ao buscar patologia:", err));
 
     // Buscar estudos por patologia
     axios
-      .get(`http://localhost:5000/api/estudos/patologia/${id}`)
+      .get(`${API_URL}/api/estudos/patologia/${id}`) // ✅ Corrigido
       .then((res) => setEstudos(res.data))
       .catch((err) => console.error("Erro ao buscar estudos:", err));
   }, [id]);
@@ -58,7 +60,11 @@ const EstudosPorPatologia = () => {
               className="card-estudo"
             >
               <img
-                src={estudo.imagem_url}
+                src={
+                  estudo.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${estudo.imagem_url}`
+                    : estudo.imagem_url
+                }
                 alt={estudo.titulo}
                 className="imagem-estudo"
               />

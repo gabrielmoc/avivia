@@ -3,13 +3,15 @@ import axios from "axios";
 import "../styles/estudosCientificos.css";
 import { Link } from "react-router-dom";
 
+const API_URL = process.env.REACT_APP_API_URL; // ✅ Adicionado
+
 const EstudosCientificos = () => {
   const [patologias, setPatologias] = useState([]);
   const [filtro, setFiltro] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/patologias")
+      .get(`${API_URL}/api/patologias`) // ✅ Corrigido aqui
       .then((res) => setPatologias(res.data))
       .catch((err) => console.error("Erro ao buscar patologias:", err));
   }, []);
@@ -42,7 +44,11 @@ const EstudosCientificos = () => {
               className="card-estudo"
             >
               <img
-                src={item.imagem_url}
+                src={
+                  item.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${item.imagem_url}`
+                    : item.imagem_url
+                }
                 alt={item.nome}
                 className="imagem-estudo"
               />

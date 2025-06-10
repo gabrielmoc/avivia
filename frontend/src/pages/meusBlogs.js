@@ -9,12 +9,13 @@ const MeusBlogs = () => {
   const [posts, setPosts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dadosParaEditar, setDadosParaEditar] = useState({});
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const buscarPosts = () => {
     const token = localStorage.getItem("token_admin");
 
     axios
-      .get("http://localhost:5000/api/blog", {
+      .get(`${API_URL}/api/blog`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setPosts(res.data.posts))
@@ -26,7 +27,7 @@ const MeusBlogs = () => {
 
     if (window.confirm("Tem certeza que deseja excluir este post?")) {
       axios
-        .delete(`http://localhost:5000/api/blog/${id}`, {
+        .delete(`${API_URL}/api/blog/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => buscarPosts())
@@ -52,28 +53,46 @@ const MeusBlogs = () => {
   const handleSalvar = (dados) => {
     const token = localStorage.getItem("token_admin");
 
-    if (dados.id) {
-      // PUT → Atualizar
-      axios
-        .put(`http://localhost:5000/api/blog/${dados.id}`, dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarPosts();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao atualizar o post."));
-    } else {
-      // POST → Criar
-      axios
-        .post("http://localhost:5000/api/blog", dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarPosts();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao criar o post."));
+    if (dados.get) {
+      // Se for FormData → ler campos obrigatórios
+      const titulo = dados.get("titulo");
+      const conteudo = dados.get("conteudo");
+
+      if (!titulo || !conteudo) {
+        alert("Por favor, preencha todos os campos obrigatórios!");
+        return;
+      }
+
+      // Verifica se tem id no FormData → PUT ou POST
+      if (!dados.get("id")) {
+        // POST → novo post
+        axios
+          .post(`${API_URL}/api/blog`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarPosts();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao criar o post."));
+      } else {
+        // PUT → atualizar post existente
+        axios
+          .put(`${API_URL}/api/blog/${dados.get("id")}`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarPosts();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao atualizar o post."));
+      }
     }
   };
 
@@ -98,10 +117,15 @@ const MeusBlogs = () => {
           posts.map((post) => (
             <div className="card-blog" key={post.id}>
               <img
-                src={post.imagem_url}
+                src={
+                  post.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${post.imagem_url}`
+                    : post.imagem_url
+                }
                 alt={post.titulo}
                 className="imagem-blog"
               />
+
               <h3>{post.titulo}</h3>
               <div
                 className="conteudo-post"

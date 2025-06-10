@@ -10,6 +10,7 @@ const esqueciSenhaRoutes = require("./routes/esqueciSenhaRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const feedbackRoutes = require("./routes/feedbackRoutes");
 
+
 require("dotenv").config();
 
 const app = express();
@@ -25,6 +26,8 @@ app.use(estudoRoutes);
 app.use(esqueciSenhaRoutes);
 app.use(adminRoutes);
 app.use("/", feedbackRoutes);
+app.use('/uploads', express.static('uploads'));
+
 
 // Conexão com o PostgreSQL
 const pool = require("./db");

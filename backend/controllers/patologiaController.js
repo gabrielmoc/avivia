@@ -2,7 +2,13 @@ const pool = require("../db");
 
 // Cadastrar patologia
 exports.cadastrarPatologia = async (req, res) => {
-  const { nome, descricao, imagem_url } = req.body;
+  let { nome, descricao, imagem_url } = req.body;
+
+  // Se foi feito upload de imagem, substitui o imagem_url
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
+
   try {
     await pool.query(
       "INSERT INTO patologias (nome, descricao, imagem_url) VALUES ($1, $2, $3)",
@@ -70,7 +76,12 @@ exports.deletarPatologia = async (req, res) => {
 // Atualizar patologia
 exports.atualizarPatologia = async (req, res) => {
   const { id } = req.params;
-  const { nome, descricao, imagem_url } = req.body;
+  let { nome, descricao, imagem_url } = req.body;
+
+  // Se foi feito upload de imagem, substitui o imagem_url
+  if (req.file) {
+    imagem_url = `/uploads/${req.file.filename}`;
+  }
 
   try {
     const resultado = await pool.query(

@@ -4,9 +4,11 @@ import "../styles/estudosCientificos.css";
 import { FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import ModalFormulario from "../components/ModalFormulario";
 
+const API_URL = process.env.REACT_APP_API_URL; // ✅ Adicionado
+
 const MeusEstudos = () => {
   const [estudos, setEstudos] = useState([]);
-  const [patologias, setPatologias] = useState([]); // ✅ NOVO state
+  const [patologias, setPatologias] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dadosParaEditar, setDadosParaEditar] = useState({});
 
@@ -14,7 +16,7 @@ const MeusEstudos = () => {
     const token = localStorage.getItem("token_admin");
 
     axios
-      .get("http://localhost:5000/api/estudos", {
+      .get(`${API_URL}/api/estudos`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setEstudos(res.data))
@@ -23,7 +25,7 @@ const MeusEstudos = () => {
 
   const buscarPatologias = () => {
     axios
-      .get("http://localhost:5000/api/patologias")
+      .get(`${API_URL}/api/patologias`)
       .then((res) => setPatologias(res.data))
       .catch((err) => console.error("Erro ao buscar patologias:", err));
   };
@@ -38,7 +40,7 @@ const MeusEstudos = () => {
 
     if (window.confirm("Tem certeza que deseja excluir este estudo?")) {
       axios
-        .delete(`http://localhost:5000/api/estudos/${id}`, {
+        .delete(`${API_URL}/api/estudos/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => buscarEstudos())
@@ -60,7 +62,7 @@ const MeusEstudos = () => {
   const handleEditar = (dados) => {
     setDadosParaEditar({
       ...dados,
-      patologia_id: dados.patologia_id || "", // ✅ Garante que o campo exista!
+      patologia_id: dados.patologia_id || "",
     });
     setIsModalOpen(true);
   };
@@ -68,36 +70,48 @@ const MeusEstudos = () => {
   const handleSalvar = (dados) => {
     const token = localStorage.getItem("token_admin");
 
-    if (
-      !dados.titulo ||
-      !dados.descricao ||
-      !dados.link_estudo ||
-      !dados.patologia_id
-    ) {
-      alert("Por favor, preencha todos os campos obrigatórios!");
-      return;
-    }
+    if (dados.get) {
+      // Se for FormData → ler com .get()
+      const titulo = dados.get("titulo");
+      const descricao = dados.get("descricao");
+      const link_estudo = dados.get("link_estudo");
+      const patologia_id = dados.get("patologia_id");
 
-    if (dados.id) {
-      axios
-        .put(`http://localhost:5000/api/estudos/${dados.id}`, dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarEstudos();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao atualizar o estudo."));
-    } else {
-      axios
-        .post("http://localhost:5000/api/estudos", dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarEstudos();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao criar o estudo."));
+      if (!titulo || !descricao || !link_estudo || !patologia_id) {
+        alert("Por favor, preencha todos os campos obrigatórios!");
+        return;
+      }
+
+      // POST ou PUT com FormData
+      if (!dados.get("id")) {
+        // POST
+        axios
+          .post(`${API_URL}/api/estudos`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarEstudos();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao criar o estudo."));
+      } else {
+        // PUT
+        axios
+          .put(`${API_URL}/api/estudos/${dados.get("id")}`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarEstudos();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao atualizar o estudo."));
+      }
     }
   };
 
@@ -115,7 +129,11 @@ const MeusEstudos = () => {
           estudos.map((estudo) => (
             <div className="card-ebook" key={estudo.id}>
               <img
-                src={estudo.imagem_url}
+                src={
+                  estudo.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${estudo.imagem_url}`
+                    : estudo.imagem_url
+                }
                 alt={estudo.titulo}
                 className="imagem-capa-ebook"
                 onError={(e) => (e.target.style.display = "none")}
@@ -159,7 +177,7 @@ const MeusEstudos = () => {
         onSubmit={handleSalvar}
         entidade="Estudo"
         dadosIniciais={dadosParaEditar}
-        patologias={patologias} // ✅ Passando as patologias
+        patologias={patologias}
       />
     </div>
   );

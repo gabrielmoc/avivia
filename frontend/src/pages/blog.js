@@ -3,13 +3,15 @@ import axios from "axios";
 import "../styles/blog.css";
 import { Link } from "react-router-dom";
 
+const API_URL = process.env.REACT_APP_API_URL; // Adiciona aqui
+
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [filtro, setFiltro] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/blog")
+      .get(`${API_URL}/api/blog`) // Corrigido aqui
       .then((res) => setPosts(res.data.posts))
       .catch((err) => console.error("Erro ao buscar posts:", err));
   }, []);
@@ -35,7 +37,11 @@ const Blog = () => {
           postsFiltrados.map((post) => (
             <Link to={`/blog/${post.id}`} className="card-blog" key={post.id}>
               <img
-                src={post.imagem_url}
+                src={
+                  post.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${post.imagem_url}`
+                    : post.imagem_url
+                }
                 alt={post.titulo}
                 className="imagem-capa-blog"
               />

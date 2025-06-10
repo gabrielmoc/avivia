@@ -4,6 +4,8 @@ import "../styles/ebooks.css";
 import { FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import ModalFormulario from "../components/ModalFormulario";
 
+const API_URL = process.env.REACT_APP_API_URL; // ✅ Adicionado
+
 const MeusEbooks = () => {
   const [ebooks, setEbooks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,10 +15,10 @@ const MeusEbooks = () => {
     const token = localStorage.getItem("token_admin");
 
     axios
-      .get("http://localhost:5000/api/ebooks", {
+      .get(`${API_URL}/api/ebooks`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => setEbooks(res.data)) // ✅ API retorna array direto!
+      .then((res) => setEbooks(res.data))
       .catch((err) => console.error("Erro ao buscar ebooks:", err));
   };
 
@@ -29,7 +31,7 @@ const MeusEbooks = () => {
 
     if (window.confirm("Tem certeza que deseja excluir este e-book?")) {
       axios
-        .delete(`http://localhost:5000/api/ebooks/${id}`, {
+        .delete(`${API_URL}/api/ebooks/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => buscarMeusEbooks())
@@ -56,26 +58,48 @@ const MeusEbooks = () => {
   const handleSalvar = (dados) => {
     const token = localStorage.getItem("token_admin");
 
-    if (dados.id) {
-      axios
-        .put(`http://localhost:5000/api/ebooks/${dados.id}`, dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarMeusEbooks();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao atualizar o e-book."));
-    } else {
-      axios
-        .post("http://localhost:5000/api/ebooks", dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          buscarMeusEbooks();
-          setIsModalOpen(false);
-        })
-        .catch(() => alert("Erro ao criar o e-book."));
+    if (dados.get) {
+      // Se for FormData → ler com .get()
+      const titulo = dados.get("titulo");
+      const descricao = dados.get("descricao");
+      const link_pdf = dados.get("link_pdf");
+      const data_publicacao = dados.get("data_publicacao");
+
+      if (!titulo || !descricao || !link_pdf || !data_publicacao) {
+        alert("Por favor, preencha todos os campos obrigatórios!");
+        return;
+      }
+
+      // POST ou PUT com FormData
+      if (!dados.get("id")) {
+        // POST
+        axios
+          .post(`${API_URL}/api/ebooks`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarMeusEbooks();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao criar o e-book."));
+      } else {
+        // PUT
+        axios
+          .put(`${API_URL}/api/ebooks/${dados.get("id")}`, dados, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            buscarMeusEbooks();
+            setIsModalOpen(false);
+          })
+          .catch(() => alert("Erro ao atualizar o e-book."));
+      }
     }
   };
 
@@ -93,7 +117,11 @@ const MeusEbooks = () => {
           ebooks.map((ebook) => (
             <div className="card-ebook" key={ebook.id}>
               <img
-                src={ebook.imagem_url}
+                src={
+                  ebook.imagem_url.startsWith("/uploads/")
+                    ? `${API_URL}${ebook.imagem_url}`
+                    : ebook.imagem_url
+                }
                 alt={ebook.titulo}
                 className="imagem-capa-ebook"
               />
