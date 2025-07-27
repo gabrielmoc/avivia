@@ -71,14 +71,7 @@ function App() {
               }
             />
 
-            <Route
-              path="/certificados"
-              element={
-                <RotaProtegidaPrescritor>
-                  <Certificados />
-                </RotaProtegidaPrescritor>
-              }
-            />
+            <Route path="/certificados" element={<Certificados />} />
 
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<PostIndividual />} />
