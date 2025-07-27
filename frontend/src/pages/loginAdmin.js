@@ -16,7 +16,10 @@ const LoginAdmin = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/admin/login", form);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/login`,
+        form
+      );
       localStorage.setItem("token_admin", res.data.token);
       navigate("/admin/painel");
     } catch (error) {

@@ -100,7 +100,10 @@ const CadastroPrescritor = () => {
 
     try {
       const { repetir_senha, ...formularioLimpo } = form;
-      await axios.post("http://localhost:5000/api/cadastro", formularioLimpo);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/cadastro`,
+        formularioLimpo
+      );
       alert("Cadastro realizado com sucesso!");
       setForm({
         nome: "",

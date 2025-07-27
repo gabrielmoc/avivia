@@ -14,7 +14,9 @@ const EsqueciSenhaPrescritor = () => {
     setErro("");
 
     try {
-      await axios.post("http://localhost:5000/esqueci-senha", { email });
+      await axios.post(`${process.env.REACT_APP_API_URL}/esqueci-senha`, {
+        email,
+      });
       setMensagem(
         "Se encontrarmos este e-mail no sistema, enviaremos as instruções para redefinir a senha."
       );

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = "http://localhost:5000/api/feedback";
+const API = `${process.env.REACT_APP_API_URL}/api/feedback`;
 
 export const listarFeedbacks = (limite = 10) =>
   axios.get(`${API}?limite=${limite}`);

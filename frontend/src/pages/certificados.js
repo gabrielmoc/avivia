@@ -9,7 +9,7 @@ const Certificados = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/certificados")
+      .get(`${process.env.REACT_APP_API_URL}/api/certificados`)
       .then((res) => setCertificados(res.data))
       .catch((err) => console.error("Erro ao buscar certificados:", err));
   }, []);

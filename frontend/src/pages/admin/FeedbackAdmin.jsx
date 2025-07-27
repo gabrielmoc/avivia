@@ -14,7 +14,7 @@ const FeedbackAdmin = () => {
     const token = localStorage.getItem("token_admin");
 
     axios
-      .get("http://localhost:5000/api/feedback", {
+      .get(`${process.env.REACT_APP_API_URL}/api/feedback`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setFeedbacks(res.data.feedbacks))
@@ -26,7 +26,7 @@ const FeedbackAdmin = () => {
 
     if (window.confirm("Tem certeza que deseja excluir este feedback?")) {
       axios
-        .delete(`http://localhost:5000/api/feedback/${id}`, {
+        .delete(`${process.env.REACT_APP_API_URL}/api/feedback/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => buscarFeedbacks())
@@ -53,7 +53,7 @@ const FeedbackAdmin = () => {
 
     if (dados.id) {
       axios
-        .put(`http://localhost:5000/api/feedback/${dados.id}`, dados, {
+        .put(`${process.env.REACT_APP_API_URL}/api/feedback/${dados.id}`, dados, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => {
@@ -63,7 +63,7 @@ const FeedbackAdmin = () => {
         .catch(() => alert("Erro ao atualizar o feedback."));
     } else {
       axios
-        .post("http://localhost:5000/api/feedback", dados, {
+        .post(`${process.env.REACT_APP_API_URL}/api/feedback`, dados, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => {

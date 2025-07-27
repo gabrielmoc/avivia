@@ -18,7 +18,7 @@ const AreaPrescritor = () => {
 
     if (token) {
       axios
-        .get("http://localhost:5000/perfil", {
+        .get(`${process.env.REACT_APP_API_URL}/perfil`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
@@ -79,7 +79,7 @@ const AreaPrescritor = () => {
     const token = localStorage.getItem("token");
 
     axios
-      .put("http://localhost:5000/perfil", prescritor, {
+      .put(`${process.env.REACT_APP_API_URL}/perfil`, prescritor, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

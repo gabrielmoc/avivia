@@ -13,7 +13,7 @@ const MeusCertificados = () => {
     const token = localStorage.getItem("token_admin");
 
     axios
-      .get("http://localhost:5000/api/certificados", {
+      .get(`${process.env.REACT_APP_API_URL}/api/certificados`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setCertificados(res.data))
@@ -29,7 +29,7 @@ const MeusCertificados = () => {
 
     if (window.confirm("Tem certeza que deseja excluir este certificado?")) {
       axios
-        .delete(`http://localhost:5000/api/certificados/${id}`, {
+        .delete(`${process.env.REACT_APP_API_URL}/api/certificados/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => buscarCertificados())
@@ -62,9 +62,13 @@ const MeusCertificados = () => {
 
     if (dados.id) {
       axios
-        .put(`http://localhost:5000/api/certificados/${dados.id}`, dados, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        .put(
+          `${process.env.REACT_APP_API_URL}/api/certificados/${dados.id}`,
+          dados,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
         .then(() => {
           buscarCertificados();
           setIsModalOpen(false);
@@ -72,7 +76,7 @@ const MeusCertificados = () => {
         .catch(() => alert("Erro ao atualizar o certificado."));
     } else {
       axios
-        .post("http://localhost:5000/api/certificados", dados, {
+        .post(`${process.env.REACT_APP_API_URL}/api/certificados`, dados, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => {
