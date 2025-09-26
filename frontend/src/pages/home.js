@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import banner from "../assets/banner.jpeg";
@@ -123,9 +124,9 @@ const Home = () => {
         <div className="card-acesso prescritor">
           <div className="conteudo-card">
             <h3>Prescritores</h3>
-            <a href="/area-prescritor" className="botao-acesso preenchimento">
+            <Link to="/area-prescritor" className="botao-acesso preenchimento">
               Acessar
-            </a>
+            </Link>
           </div>
         </div>
       </section>
