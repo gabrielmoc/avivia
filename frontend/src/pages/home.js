@@ -98,9 +98,9 @@ const Home = () => {
                   __html: post.conteudo.substring(0, 50),
                 }}
               />
-              <a href={`/blog/${post.id}`} className="botao-blog">
+              <Link href={`/blog/${post.id}`} className="botao-blog">
                 Ler mais
-              </a>
+              </Link>
             </div>
           ))}
         </div>
@@ -143,9 +143,9 @@ const Home = () => {
               padrões da indústria. Cada lote passa por testes rigorosos
               garantindo resultados consistentes e confiáveis.
             </p>
-            <a href="/certificados" className="botao-produtos">
+            <Link href="/certificados" className="botao-produtos">
               Ver Certificados de Análise
-            </a>
+            </Link>
           </div>
           <div className="imagem-sobre">
             <img src={imagemProdutos} alt="Produtos da Avivia" />
