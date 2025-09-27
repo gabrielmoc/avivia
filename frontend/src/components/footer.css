@@ -117,3 +117,21 @@
 .footer-bottom a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 991px) {
+  .footer-col.esquerda {
+    align-items: center;
+  }
+
+  .footer-col.centro {
+    padding-top: 30px;
+  }
+
+  .footer-col.direita {
+    padding-top: 30px;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 0.3rem;
+  }
+}
