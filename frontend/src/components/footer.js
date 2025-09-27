@@ -98,7 +98,7 @@ const Footer = () => {
         Desenvolvido por{" "}
         <strong>
           <a
-            href="https://gabrielcavalcanti.netlify.app/"
+            href="http://gabrielcavalcanti.tech"
             target="_blank"
             rel="noopener noreferrer"
           >
