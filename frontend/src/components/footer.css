@@ -124,14 +124,18 @@
   }
 
   .footer-col.centro {
-    padding-top: 30px;
+    padding-top: 50px;
   }
 
   .footer-col.direita {
-    padding-top: 30px;
+    padding-top: 50px;
   }
 
   .footer-col ul li {
     margin-bottom: 0.3rem;
   }
+
+  .footer-logo {
+    margin-bottom: 0;
+}
 }
