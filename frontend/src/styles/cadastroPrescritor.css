@@ -84,3 +84,19 @@
     background-color: #014c5e;
   }
   
+/* Responsividade para mobile */
+@media (max-width: 991px) {
+  form .linha {
+    flex-direction: column; /* coloca os campos embaixo um do outro */
+    gap: 0.5rem;
+  }
+
+  .campo {
+    width: 100%;
+  }
+
+  input,
+  select {
+    width: 100%; /* garante que o input ocupa a linha inteira */
+  }
+}
